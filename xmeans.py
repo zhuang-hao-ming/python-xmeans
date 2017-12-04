@@ -83,7 +83,7 @@ class xmeans:
     def _log_likelihood(cls, R, M, clusters, centroids):
         ll = 0
         var = xmeans._variance(R, M, clusters, centroids)
-        print('estimate {}'.format(var))
+        #print('estimate {}'.format(var))
         for cluster in clusters:
             R_n = len(cluster)
             t1 = R_n * np.log(R_n)

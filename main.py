@@ -3,6 +3,15 @@ import random
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from xmeans import xmeans
+import time
+
+def timedcall(executable_function, *args):
+    time_start = time.clock()
+    result = executable_function(*args)
+    time_end = time.clock()
+    return time_end-time_start, result
+
+
 
 
 def generate_data(n, d, k, sigma=0.1):
@@ -26,9 +35,11 @@ if __name__ == '__main__':
     # result = KMeans(n_clusters=2).fit(data)
     # cluster_center = result.cluster_centers_
 
-    result = xmeans(2, 40).fit(data)
+    # result = xmeans(2, 40).fit(data)
+    elapse, result = timedcall(lambda: xmeans(2, 40).fit(data))
     cluster_center = result.cluster_centers_
     print('cluster num {}'.format(len(cluster_center)))
+    print(elapse)
 
     plt.figure()
     plt.title('xmeans')
